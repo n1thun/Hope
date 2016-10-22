@@ -10,6 +10,10 @@ class Person(models.Model):
     age = models.IntegerField()
     dob = models.DateField()
     coc = models.BooleanField()
+    shelter_status = models.BooleanField()
+    
+    def __str__(self):
+        return "{}".format(self.name)
 
 class Foreclosure(models.Model):
     defendant = models.ForeignKey('Person', on_delete=models.CASCADE)
