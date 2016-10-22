@@ -3,7 +3,7 @@ Getting Started
 ---------------
 To get up and running, simply do the following:
 
-    $ cd django-hack-vega
+    $ cd vega
 
     # Install the requirements
     $ pip install -r requirements.txt
