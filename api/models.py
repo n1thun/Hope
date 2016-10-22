@@ -30,6 +30,7 @@ class Foreclosure(models.Model):
 class ForclosureStatusHistory(models.Model):
     foreclosure = models.ForeignKey('Foreclosure', on_delete=models.CASCADE)
     status = models.CharField(max_length=512)
+    date = models.DateField()
 
     def __str__(self):
         return "{}".format(self.status)
