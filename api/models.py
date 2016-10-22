@@ -8,9 +8,9 @@ class Person(models.Model):
     zip = models.CharField(max_length=11)
     city = models.CharField(max_length=128)
     age = models.IntegerField()
-    dob = models.DateField()
-    coc = models.BooleanField()
-    shelter_status = models.BooleanField()
+    date_of_birth = models.DateField()
+    in_continuum_of_care = models.BooleanField()
+    in_shelter = models.BooleanField()
     
     def __str__(self):
         return "{}".format(self.name)
