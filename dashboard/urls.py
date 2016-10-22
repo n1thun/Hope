@@ -19,6 +19,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^datetest/', views.current_datetime, name="datetest")
+    url(r'^datetest/', views.current_datetime, name="datetest"),
+    url(r'^home/', views.Home.as_view(), name = 'home'),
+
 
 ]
