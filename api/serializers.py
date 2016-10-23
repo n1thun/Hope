@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from api.models import Foreclosure, Person, ForclosureStatusHistory
 
+from api.models import Foreclosure, Person, ForclosureStatusHistory
 
 
 class PersonSerializer(serializers.Serializer):
@@ -8,6 +8,7 @@ class PersonSerializer(serializers.Serializer):
     address = serializers.CharField(max_length=512, required=False)
     zip = serializers.CharField(max_length=11, required=False)
     city = serializers.CharField(max_length=128, required=False)
+    state = serializers.CharField(max_length=64, required=False)
     age = serializers.IntegerField(required=False)
     date_of_birth = serializers.DateField(required=False)
     in_continuum_of_care = serializers.BooleanField(required=False)
@@ -26,6 +27,7 @@ class ForeclosureSerializer(serializers.Serializer):
     sale_date = serializers.CharField(required=False)
     zip = serializers.CharField(max_length=11, required=False)
     city = serializers.CharField(max_length=128, required=False)
+    state = serializers.CharField(max_length=64, required=False)
     deed_of_trust_amount = serializers.CharField(required=False)
     create_date = serializers.DateField(required=False)
 
