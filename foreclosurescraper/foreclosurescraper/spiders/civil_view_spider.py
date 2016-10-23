@@ -1,7 +1,6 @@
-from foreclosurescraper.items import ForeclosureItem, ForeclosureHistoryItem, PersonItem
-from scrapy.exceptions import CloseSpider
+import datetime
 
-from api.models import Foreclosure, ForclosureStatusHistory, Person
+from foreclosurescraper.items import ForeclosureItem, ForeclosureHistoryItem, PersonItem
 
 __author__ = 'Jonathan Morton'
 import scrapy
@@ -48,20 +47,15 @@ class CivilViewSpider(scrapy.Spider):
             if foreclosure_item['deed_of_trust_amount'].find("$") == -1:
                 return
 
-            f = Foreclosure.objects.create(**dict(foreclosure_item))
-            f.save()
-            raise CloseSpider("Check the database")
-
-
             total_history = []
             for history in history_hxs:
                 if (history.xpath('td[1]/text()').extract()) == "Status":  # Header
                     continue
                 history_item = ForeclosureHistoryItem()
-                history_item['status'] = history.xpath('td[1]/text()').extract()
-                history_item['date'] = history.xpath('td[2]/text()').extract()
+                history_item['status'] = history.xpath('td[1]/text()').extract_first()
+                history_item['date'] = history.xpath('td[2]/text()').extract_first()
 
-                if history_item['date'] == []:
+                if history_item['date'] is None:
                     continue
 
                 total_history.append(dict(history_item))
@@ -79,3 +73,16 @@ class CivilViewSpider(scrapy.Spider):
     @staticmethod
     def fix_name(name):
         return name.replace(" ET AL", "")
+
+    @staticmethod
+    def convert_date(listing_date):
+        date_format = "%m/%d/%Y"
+        print("LISTING DATE: " + listing_date)
+        try:
+            listing_sale_date = datetime.strptime(listing_date, date_format).strftime('%Y-%m-%d')
+            print(
+                "CORRECT DATE: \nCORRECT DATE: \nCORRECT DATE: \nCORRECT DATE: \nCORRECT DATE: \nCORRECT DATE: \nCORRECT DATE: \n" + listing_sale_date)
+            return str(listing_sale_date)
+        except:
+            print("ERROR ERROR \nERROR ERROR \nERROR ERROR \nERROR ERROR \nERROR ERROR \nERROR ERROR \n")
+            return "1000-05-10"
