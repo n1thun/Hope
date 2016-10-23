@@ -1,14 +1,33 @@
 from rest_framework import serializers
-from api.models import Foreclosure
+from api.models import Foreclosure, Person, ForclosureStatusHistory
+
+
+
+class PersonSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=512, required=True)
+    address = serializers.CharField(max_length=512, required=False)
+    zip = serializers.CharField(max_length=11, required=False)
+    city = serializers.CharField(max_length=128, required=False)
+    age = serializers.IntegerField(required=False)
+    date_of_birth = serializers.DateField(required=False)
+    in_continuum_of_care = serializers.BooleanField(required=False)
+    in_shelter = serializers.BooleanField(required=False)
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Person` instance, given the validated data.
+        """
+        return Person.objects.create(**validated_data)
+
 
 class ForeclosureSerializer(serializers.Serializer):
-    defendant = serializers.CharField()
-    address = serializers.CharField(max_length=512)
-    sale_date = serializers.DateField()
-    zip = serializers.CharField(max_length=11)
-    city = serializers.CharField(max_length=128)
-    deed_of_trust_amount = serializers.FloatField()
-    create_date = serializers.DateField()
+    name = serializers.CharField()
+    address = serializers.CharField(max_length=512, required=False)
+    sale_date = serializers.CharField(required=False)
+    zip = serializers.CharField(max_length=11, required=False)
+    city = serializers.CharField(max_length=128, required=False)
+    deed_of_trust_amount = serializers.CharField(required=False)
+    create_date = serializers.DateField(required=False)
 
     def create(self, validated_data):
         """
@@ -16,18 +35,13 @@ class ForeclosureSerializer(serializers.Serializer):
         """
         return Foreclosure.objects.create(**validated_data)
 
-class PersonSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=512)
-    address = serializers.CharField(max_length=512)
-    zip = serializers.CharField(max_length=11)
-    city = serializers.CharField(max_length=128)
-    age = serializers.IntegerField()
-    date_of_birth = serializers.DateField()
-    in_continuum_of_care = serializers.BooleanField()
-    in_shelter = serializers.BooleanField()
+class ForclosureStatusHistorySerializer(serializers.Serializer):
+    foreclosure = ForeclosureSerializer(many=True)
+    status = serializers.CharField(max_length=512)
+    date = serializers.DateField()
 
     def create(self, validated_data):
         """
         Create and return a new `Person` instance, given the validated data.
         """
-        return Foreclosure.objects.create(**validated_data)
+        return ForclosureStatusHistory.objects.create(**validated_data)
