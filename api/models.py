@@ -50,8 +50,8 @@ class Person(models.Model):
     has_mental_health_issues = models.BooleanField(default=False)
 
 
-def __str__(self):
-    return "{}".format(self.name)
+    def __str__(self):
+        return "{}".format(self.name)
 
 
 class Foreclosure(models.Model):
