@@ -24,10 +24,13 @@
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
+
 from api.models import Foreclosure, Person
 from api.serializers import ForeclosureSerializer, PersonSerializer
+from documentcreation.document import make_tex
+
 
 class JSONResponse(HttpResponse):
     """
@@ -75,3 +78,7 @@ def person_list(request):
         return JSONResponse(serializer.errors, status=400)
 
 
+@csrf_exempt
+def create_letters(request):
+    make_tex()
+    return JSONResponse("Success", status=200)

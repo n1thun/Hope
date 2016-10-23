@@ -1,0 +1,40 @@
+\documentclass[10pt,stdletter]{newlfm}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{charter}
+
+\widowpenalty=1000
+\clubpenalty=1000
+
+\newsavebox{\Luiuc}
+\sbox{\Luiuc}{%
+	\parbox[b]{1.75in}{%
+		\vspace{0.5in}%
+		\includegraphics[scale=0.3]
+		{header.eps}%
+	}%
+}%
+\makeletterhead{Uiuc}{\Lheader{\usebox{\Luiuc}}}
+
+\newlfmP{headermarginskip=20pt}
+\newlfmP{sigsize=50pt}
+\newlfmP{dateskipafter=20pt}
+\newlfmP{addrfromphone}
+\newlfmP{addrfromemail}
+\PhrPhone{Phone}
+\PhrEmail{Email}
+
+\lthUiuc
+
+\namefrom{Joe Doe}
+\addrfrom{%
+	Camden Cares\\
+	1515 N. Broad St.\\
+	Camden, NJ 07865
+}
+\phonefrom{215-555-1512}
+\emailfrom{camden.cares@example.com}
+
+\greetto{To Whom It May Concern,}
+\closeline{Sincerely,}
+\begin{document}

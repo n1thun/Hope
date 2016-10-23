@@ -1,61 +1,18 @@
-\documentclass[10pt,stdletter]{newlfm}
-\usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{charter}
-
-\widowpenalty=1000
-\clubpenalty=1000
-
-\newsavebox{\Luiuc}
-\sbox{\Luiuc}{%
-	\parbox[b]{1.75in}{%
-		\vspace{0.5in}%
-		\includegraphics[scale=0.3]
-		{header.eps}%
-	}%
-}%
-\makeletterhead{Uiuc}{\Lheader{\usebox{\Luiuc}}}
-
-\newlfmP{headermarginskip=20pt}
-\newlfmP{sigsize=50pt}
-\newlfmP{dateskipafter=20pt}
-\newlfmP{addrfromphone}
-\newlfmP{addrfromemail}
-\PhrPhone{Phone}
-\PhrEmail{Email}
-
-\lthUiuc
-
-\namefrom{Joe Doe}
-\addrfrom{%
-	Camden Cares\\
-	1515 N. Broad St.\\
-	Camden, NJ 07865
+\addrto{%
+    \VAR{name}\\
+    \VAR{address}\\
+    \VAR{city}, \VAR{state} \VAR{zip}
 }
-\phonefrom{215-555-1512}
-\emailfrom{camden.cares@example.com}
+\begin{newlfm}
 
-\greetto{To Whom It May Concern,}
-\closeline{Sincerely,}
-\begin{document}
-\BLOCK{for foreclosure in \VAR{foreclosures}}
-    \addrto{%
-    \VAR{foreclosure.name}\\
-    \VAR{foreclosure.address}\\
-    \VAR{foreclosure.city}, \VAR{foreclosure.state} \VAR{foreclosure.zip}\\
-    \VAR{foreclosure.name}}
-    \begin{newlfm}
+We are writing to inform you that we have recently become aware of a pending foreclosure against your home. Your house maybe sold: \VAR{sale_date}
 
-    We are writing to inform you that we have recently become aware of a pending foreclosure against your home
+It is urgent that you contact your mortgage broker to handle this issue.
+We at Camden Care offer a variety of services to help you get through this difficult time. To discover the best services for your situation please visit our website at www.camdencares.example/foreclosure.
+If you are unable to visit our website please call us at 215-555-1512
 
-    It is urgent that you contact your mortgage broker to handle this issue.
-    We at Camden Care offer a variety of services to help you get through this difficult time. To discover the best services for your situation please visit our website at www.camdencares.example/foreclosure.
-    If you are unable to visit our website please call us at 215-555-1512
+We hope you make it through this difficult time
 
-    We hope you make it through this difficult time
-
-    \end{newlfm}
-    \pagebreak
-\BLOCK{ endfor }
-\end{document}
+\end{newlfm}
+\pagebreak
 
