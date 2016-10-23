@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
 
 
 # Application definition
@@ -54,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'vega.urls'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 TEMPLATES = [
     {

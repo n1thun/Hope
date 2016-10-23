@@ -18,9 +18,13 @@ from django.contrib import admin
 
 from . import views
 
+
 urlpatterns = [
     url(r'^datetest/', views.current_datetime, name="datetest"),
-    url(r'^home/', views.Home.as_view(), name = 'home'),
+    url(r'^$', views.Home.as_view(), name = 'home'),
+    url(r'^register/', views.Register.as_view(), name = 'register'),
+    url(r'^success/', views.Success.as_view(), name = 'success'),
+    url(r'^org/', views.Org.as_view(), name = 'org'),
 
 
 ]

@@ -1,0 +1,54 @@
+ {% load static %} {% load crispy_forms_tags %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Register here</title>
+
+	<!-- Bootstrap -->
+	<link href={% static "dashboard/css/bootstrap.min.css" %} rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<br>
+	<div class="row">
+		<div class="col-xs-2 col-md-4 col-lg-3 col-sm-12">
+
+		</div>
+
+		<div class="col-xs-8 col-md-4 col-lg-6 col-sm-12">
+			<h1>Registraion</h1>
+			<h3>Please enter your details below:</h3>
+				<form action="" method="post">{% csrf_token %} {{ form|crispy }} 
+					<input type="submit" value="Save" />
+				</form>
+		</div>
+		<div class="col-xs-2 col-md-4 col-lg-3 col-sm-12"></div>
+
+	</div>
+
+
+
+
+	<!-- jQuery -->
+	<script src={ % static "dashboard/js/jquery.js" %}></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src={ % static "dashboard/js/bootstrap.min.js" %}></script>
+</body>
+
+</html>
