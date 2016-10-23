@@ -16,12 +16,12 @@ class Person(models.Model):
         return "{}".format(self.name)
 
 class Foreclosure(models.Model):
-    defendant = models.ForeignKey('Person', on_delete=models.CASCADE)
+    defendant = models.ForeignKey(Person, on_delete=models.CASCADE)
     address = models.CharField(max_length=512)
     sale_date = models.DateField()
     zip = models.CharField(max_length=11)
     city = models.CharField(max_length=128)
-    deed_of_trust_amount = models.DecimalField()
+    deed_of_trust_amount = models.FloatField()
     create_date = models.DateField()
 
     def __str__(self):
