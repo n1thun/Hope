@@ -49,20 +49,23 @@ class Person(models.Model):
     in_employed = models.BooleanField(default=False)
     has_mental_health_issues = models.BooleanField(default=False)
 
+
     def __str__(self):
         return "{}".format(self.name)
 
+
 class Foreclosure(models.Model):
-    defendant = models.ForeignKey(Person, on_delete=models.CASCADE)
+    name = models.CharField(max_length=512)
     address = models.CharField(max_length=512)
-    sale_date = models.DateField()
+    sale_date = models.DateField(null=True)
     zip = models.CharField(max_length=11)
-    city = models.CharField(max_length=128)
-    deed_of_trust_amount = models.FloatField()
-    create_date = models.DateField()
+    city = models.CharField(max_length=128, blank=True)
+    deed_of_trust_amount = models.CharField(max_length=64, null=True, blank=True)
+    create_date = models.DateField(null=True)
 
     def __str__(self):
-        return "{} forclosed on {}".format(self.defendent, self.create_date)
+        return "{} forclosed on {}".format(self.name, self.create_date)
+
 
 class ForclosureStatusHistory(models.Model):
     foreclosure = models.ForeignKey('Foreclosure', on_delete=models.CASCADE)
