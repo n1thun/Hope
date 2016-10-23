@@ -10,6 +10,7 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 import os
 import sys
+import django
 
 BOT_NAME = 'foreclosurescraper'
 
@@ -65,9 +66,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'foreclosurescraper.pipelines.SomePipeline': 300,
-# }
+ITEM_PIPELINES = {
+   'foreclosurescraper.pipelines.ForeclosurescraperPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -90,9 +91,7 @@ ROBOTSTXT_OBEY = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-sys.path.append('~/PycharmProjects/vega')  # TODO Figure out how to make a relative path if it becomes an issue
+sys.path.append('/Users/larrikin/PycharmProjects/vega')  # TODO Figure out how to make a relative path if it becomes an issue
 os.environ['DJANGO_SETTINGS_MODULE'] = 'vega.settings'
-
-import django
 
 django.setup()
